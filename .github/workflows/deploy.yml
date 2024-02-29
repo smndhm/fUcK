@@ -1,7 +1,7 @@
 name: Deploy website
 
 permissions:
-  pages: write 
+  contents: write 
 
 on:
   push:
