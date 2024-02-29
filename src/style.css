@@ -1,9 +1,16 @@
+:root {
+  --fUcK-background: #000; 
+   --fUcK-color: #666;
+
+}
+
 html {
   &,body {
     height: 100%;
   }
   body {        
-    background-color: black;
+    background-color: var(--fUcK-background);
+    color: var(--fUcK-color);
     display: flex;
     justify-content: center;
     align-items: center;
