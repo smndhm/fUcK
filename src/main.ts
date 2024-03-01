@@ -1,16 +1,33 @@
-import './style.css'
-import svg from './svg/border.svg?raw'
+import "./style.css";
+import svg from "./svg/border.svg?raw";
 
-const hue = Math.floor(Math.random() * 360);
-const saturation = Math.floor(Math.random() * 101);
-const minLightness = 0; // Valeur minimale de luminosité
-const maxLightness = 50; // Valeur maximale de luminosité
-const lightness = Math.floor(Math.random() * (maxLightness - minLightness + 1)) + minLightness;
+let hue = Math.floor(Math.random() * 360);
+let saturation = Math.floor(Math.random() * 101);
 
-console.log({ hue, saturation, lightness });
+const minLightness = 0;
+const maxLightness = 50;
 
+let lightness =
+  Math.floor(Math.random() * (maxLightness - minLightness + 1)) + minLightness;
 
-document.documentElement.style.setProperty('--fUcK-background', `hsl(${hue} ${saturation} ${lightness})`);
-document.documentElement.style.setProperty('--fUcK-color', `hsl(${hue} ${saturation} ${lightness + 30})`);
+const getHSL = (hue: number, saturation: number, lightness: number): string =>
+  `hsl(${hue} ${saturation}% ${lightness}%)`;
 
-document.body.insertAdjacentHTML('afterbegin', svg);
+const setColor = () => {
+  document.documentElement.style.setProperty(
+    "--fUcK-background",
+    getHSL(hue, saturation, lightness)
+  );
+  document.documentElement.style.setProperty(
+    "--fUcK-color",
+    getHSL(hue, saturation, lightness + 30)
+  );
+  console.log({ hue, saturation, lightness });
+};
+
+document.body.insertAdjacentHTML("afterbegin", svg);
+
+setInterval(() => {
+  hue = (hue + 1) % 360;
+  setColor();
+}, 10);
